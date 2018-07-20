@@ -17,5 +17,13 @@ module.exports = {
     }
   },
 
-  lintOnSave: true
+  lintOnSave: undefined,
+
+  org: {
+    vue: {
+      pwa: {
+        name: 'PokeVue'
+      }
+    }
+  }
 };
