@@ -1,10 +1,10 @@
 <template>
-    <div>
-        <div v-if="pokemon" class="flex flex-col items-center">
-            <span>{{ pokemon.name }}</span>
-            <img :src="pokemon.sprites.front_default" alt="">
-        </div>
+  <div>
+    <div class="flex flex-col items-center border rounded p-3 shadow hover:shadow-lg cursor-pointer">
+      <span class="capitalize text-lg font-medium">{{ pokemon.name }}</span>
+      <img :src="pokemon.sprites.front_default" alt="">
     </div>
+  </div>
 </template>
 
 <script>
@@ -21,8 +21,12 @@ export default {
       pokemon: null
     };
   },
+  watch: {
+    url: function() {
+      this.get();
+    }
+  },
   mounted() {
-    console.log("card");
     this.get();
   },
   methods: {

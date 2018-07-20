@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <div class="h-screen flex flex-col justify-center items-center">
-      <img src="./assets/pokemon.png">
-      <poke-list></poke-list>
+    <div class="min-h-screen h-full flex flex-col items-center">
+      <img src="./assets/pokemon.png" class="my-8 h-12">
+      <poke-list/>
     </div>
   </div>
 </template>
