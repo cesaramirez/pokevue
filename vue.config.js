@@ -15,15 +15,5 @@ module.exports = {
         styles: resolve("src/assets/scss")
       }
     }
-  },
-
-  lintOnSave: undefined,
-
-  org: {
-    vue: {
-      pwa: {
-        name: 'PokeVue'
-      }
-    }
   }
 };
