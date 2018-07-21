@@ -6,3 +6,19 @@ body {
   font-family: "Ubuntu", sans-serif;
   font-size: 16px;
 }
+
+/** Loader **/
+.pokeball {
+  animation: rotate 0.8s linear 0s infinite;
+  background-image: url(../pokeball.png);
+}
+
+/* AnimationFrames */
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
