@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="flex flex-col items-center border rounded p-3 shadow hover:shadow-lg cursor-pointer h-32">
+    <div class="flex flex-col items-center border rounded p-3 shadow hover:shadow-lg cursor-pointer h-32 w-32">
       <transition name="fade" mode="out-in">
         <div v-if="!pokemon"
              key="pokeball"

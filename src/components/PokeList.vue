@@ -1,11 +1,11 @@
 <template>
   <div class="container">
-    <div class="flex flex-wrap w-full">
+    <div class="flex flex-wrap w-full justify-center">
       <div
         v-for="pokemon in pokemons"
         :key="pokemon.id"
-        class="md:w-1/4 xl:w-1/6 p-4">
-        <poke-card :url="pokemon.url"/>
+        class="p-4">
+        <poke-card :url="pokemon.url" class="xs:w-1/2 md:w-1/4 xl:w-1/6 "/>
       </div>
     </div>
     <div
