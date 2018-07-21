@@ -26,6 +26,7 @@
 
 <script>
 import PokeCard from "./PokeCard";
+import { Bus } from "../bus.js";
 export default {
   name: "PokeList",
   components: {
@@ -52,6 +53,8 @@ export default {
         this.meta = json;
       } catch (error) {
         return error;
+      } finally {
+        Bus.$emit("loading-data", false);
       }
     },
     async previous() {
