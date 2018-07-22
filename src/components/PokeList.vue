@@ -11,15 +11,11 @@
     <div
       v-if="meta"
       class="flex justify-center w-full">
-      <button
-        v-show="meta.previous ? true : false"
-        type="button"
-        class="mx-4"
-        @click.prevent="previous">Prev</button>
-      <button
-        type="button"
-        class="mx-4"
-        @click.prevent="next">Next</button>
+      <a class="cursor-pointer text-white my-8 no-underline tracking-wide text-lg font-medium bg-black py-3 px-6 rounded-full shadow hover:bg-red"
+         href=""
+         @click.prevent="next">
+        Load More
+      </a>
     </div>
   </div>
 </template>
@@ -45,7 +41,7 @@ export default {
     async get() {
       try {
         const response = await fetch(
-          "https://pokeapi.co/api/v2/pokemon?limit=24"
+          "https://pokeapi.co/api/v2/pokemon?limit=15"
         );
         const json = await response.json();
         this.pokemons = json.results;
@@ -73,10 +69,12 @@ export default {
       try {
         const response = await fetch(this.meta.next);
         const json = await response.json();
-        this.pokemons = null;
-        this.pokemons = json.results;
-        delete json.results;
-        this.meta = json;
+        const pokemons = json.results;
+        console.log(pokemons);
+        // console.log(typeof this.pokemons);
+        this.pokemons = [...this.pokemons, ...pokemons];
+        // delete json.results;
+        // this.meta = json;
       } catch (error) {
         return error;
       }

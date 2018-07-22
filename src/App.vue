@@ -32,7 +32,6 @@ export default {
   },
   mounted() {
     Bus.$on("loading-data", val => {
-      console.log(val);
       this.loading = val;
     });
   }
