@@ -12,6 +12,19 @@
              class="flex flex-col items-center">
           <span class="capitalize text-lg font-medium">{{ pokemon.name }}</span>
           <img :src="pokemon.sprites.front_default" alt="">
+          <span class="text-sm mb-1">
+            Nº {{ String(pokemon.id).padStart(3, '0') }}
+          </span>
+          <div class="flex text-xs">
+            <template v-for="type in pokemon.types" v-if="types">
+              <span
+                :key="type.slot"
+                :style="'background-color:' + setColorType(type.type)"
+                class="mx-1 rounded-full px-2 py-1 text-white">
+                {{ type.type.name }}
+              </span>
+            </template>
+          </div>
         </div>
       </transition>
     </div>
@@ -24,6 +37,10 @@ export default {
   props: {
     url: {
       type: String,
+      required: true
+    },
+    types: {
+      type: Array,
       required: true
     }
   },
@@ -50,6 +67,12 @@ export default {
       } catch (error) {
         return error;
       }
+    },
+    setColorType(type) {
+      if (type.name == "normal") {
+        return "black";
+      }
+      return this.types.find(t => t.name.includes(type.name)).color;
     }
   }
 };

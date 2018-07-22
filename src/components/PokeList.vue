@@ -5,7 +5,12 @@
         v-for="pokemon in pokemons"
         :key="pokemon.id"
         class="p-4">
-        <poke-card :url="pokemon.url" class="xs:w-1/2 md:w-1/4 xl:w-1/6 "/>
+        <transition name="fade" mode="out-in">
+          <poke-card
+            :types="types"
+            :url="pokemon.url"
+            class="xs:w-1/2 md:w-1/4 xl:w-1/6 "/>
+        </transition>
       </div>
     </div>
     <div
@@ -13,7 +18,7 @@
       class="flex justify-center w-full">
       <a class="cursor-pointer text-white my-8 no-underline tracking-wide text-lg font-medium bg-black py-3 px-6 rounded-full shadow hover:bg-red"
          href=""
-         @click.prevent="next">
+         @click.prevent="more">
         Load More
       </a>
     </div>
@@ -30,11 +35,13 @@ export default {
   },
   data() {
     return {
+      types: null,
       pokemons: null,
       meta: null
     };
   },
   mounted() {
+    this.getTypes();
     this.get();
   },
   methods: {
@@ -53,28 +60,26 @@ export default {
         Bus.$emit("loading-data", false);
       }
     },
-    async previous() {
+    async more() {
       try {
-        const response = await fetch(this.meta.previous);
+        const response = await fetch(this.meta.next);
         const json = await response.json();
-        this.pokemons = null;
-        this.pokemons = json.results;
+        const pokemons = json.results;
+        this.pokemons = [...this.pokemons, ...pokemons];
         delete json.results;
         this.meta = json;
       } catch (error) {
         return error;
       }
     },
-    async next() {
+    async getTypes() {
       try {
-        const response = await fetch(this.meta.next);
+        const response = await fetch("https://pokeapi.co/api/v2/type");
         const json = await response.json();
-        const pokemons = json.results;
-        console.log(pokemons);
-        // console.log(typeof this.pokemons);
-        this.pokemons = [...this.pokemons, ...pokemons];
-        // delete json.results;
-        // this.meta = json;
+        this.types = json.results;
+        this.types.map(
+          t => (t.color = "#" + ((Math.random() * 0xffffff) << 0).toString(16))
+        );
       } catch (error) {
         return error;
       }
