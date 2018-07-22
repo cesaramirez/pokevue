@@ -9,9 +9,10 @@
         </div>
         <div v-else
              key="pokemon"
-             class="flex flex-col items-center">
+             class="flex flex-col items-center"
+             @click="detail">
           <span class="capitalize text-lg font-medium">{{ pokemon.name }}</span>
-          <img :src="pokemon.sprites.front_default" alt="">
+          <img :src="pokemon.sprites.front_default" :alt="pokemon.name">
           <span class="text-sm mb-1">
             Nº {{ String(pokemon.id).padStart(3, '0') }}
           </span>
@@ -32,6 +33,7 @@
 </template>
 
 <script>
+import { Bus } from "@/bus";
 export default {
   name: "PokeCard",
   props: {
@@ -73,6 +75,9 @@ export default {
         return "black";
       }
       return this.types.find(t => t.name.includes(type.name)).color;
+    },
+    detail() {
+      Bus.$emit("pokemon-detail", { pokemon: this.pokemon, types: this.types });
     }
   }
 };

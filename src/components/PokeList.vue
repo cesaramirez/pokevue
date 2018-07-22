@@ -22,16 +22,19 @@
         Load More
       </a>
     </div>
+    <poke-detail/>
   </div>
 </template>
 
 <script>
 import PokeCard from "./PokeCard";
+import PokeDetail from "./PokeDetail";
 import { Bus } from "../bus.js";
 export default {
   name: "PokeList",
   components: {
-    PokeCard
+    PokeCard,
+    PokeDetail
   },
   data() {
     return {
