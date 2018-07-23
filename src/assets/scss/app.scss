@@ -14,6 +14,10 @@ body {
   background-image: url(../pokeball.png);
 }
 
+.dialog-open {
+  overflow: hidden;
+}
+
 /* AnimationFrames */
 @keyframes rotate {
   0% {

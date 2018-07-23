@@ -22,7 +22,9 @@
         Load More
       </a>
     </div>
-    <poke-detail/>
+    <transition name="fade" mode="out-in">
+      <poke-detail/>
+    </transition>
   </div>
 </template>
 
@@ -38,7 +40,7 @@ export default {
   },
   data() {
     return {
-      types: null,
+      types: [],
       pokemons: null,
       meta: null
     };

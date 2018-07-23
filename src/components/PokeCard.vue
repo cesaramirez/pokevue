@@ -10,7 +10,7 @@
         <div v-else
              key="pokemon"
              class="flex flex-col items-center"
-             @click="detail">
+             @click="open">
           <span class="capitalize text-lg font-medium">{{ pokemon.name }}</span>
           <img :src="pokemon.sprites.front_default" :alt="pokemon.name">
           <span class="text-sm mb-1">
@@ -76,8 +76,13 @@ export default {
       }
       return this.types.find(t => t.name.includes(type.name)).color;
     },
-    detail() {
-      Bus.$emit("pokemon-detail", { pokemon: this.pokemon, types: this.types });
+    open() {
+      document.getElementById('body').classList.add('dialog-open')
+      Bus.$emit("pokemon-open-detail", {
+        pokemon: this.pokemon,
+        types: this.types,
+        open: true
+      });
     }
   }
 };
